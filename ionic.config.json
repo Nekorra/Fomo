@@ -1,0 +1,7 @@
+{
+  "name": "FOMO",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
