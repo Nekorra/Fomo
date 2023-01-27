@@ -1,0 +1,60 @@
+<ion-content>
+  <div id="title">
+    Events Await <br> You
+  </div>
+
+
+  <div class="flip-container" #flipcontainer>
+    <div class="flipper">
+      <div class="front">
+         
+      <ion-card id="register-card">
+        <ion-card-header>
+          <ion-card-title>Login</ion-card-title>
+        </ion-card-header>
+        <div class = "ion-padding">
+          <ion-input placeholder = "email"  class="input" [(ngModel)]="loginEmail"></ion-input>
+          <br>
+            <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="loginPassword"></ion-input>
+        </div>
+        <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" ><div style="color: white" (click)="login()">Login In </div></ion-button>
+        <div class="line">
+          <br>
+        </div>
+        <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; color: black; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> Sign Up </div>
+        
+        </ion-button> 
+      </ion-card>
+      </div>  
+    <div class="back">
+
+
+      <ion-card id="register-card">
+        <ion-card-header>
+          <ion-card-title>Sign Up</ion-card-title>
+        </ion-card-header>
+        <div class = "ion-padding">
+          <ion-input placeholder = "email"  class="input" [(ngModel)] = "registerEmail"></ion-input>
+          <br>
+            <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="registerPassword"></ion-input>
+            <br>
+            <ion-input placeholder = "Repeat Password" type = "password" class="input"  [(ngModel)]="registerPassword2"></ion-input>
+        </div>
+        <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;"><div style="color: white" (click)="register()">Create Account </div></ion-button>
+        <div class="line">
+          <br>
+        </div>
+        <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; color: black; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> Log In </div>
+        
+        </ion-button> 
+      </ion-card>
+
+
+     
+    </div>
+  </div>  
+</div>
+
+
+</ion-content>
+
