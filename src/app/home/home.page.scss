@@ -25,3 +25,12 @@
 #container a {
   text-decoration: none;
 }
+
+.add-button[shape=circle] {
+  --border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  bottom: 1%;
+  right: 2%;
+}

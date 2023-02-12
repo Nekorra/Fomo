@@ -15,6 +15,9 @@ export class RegisterPage implements OnInit {
   registerEmail: string;
   registerPassword: string;
   registerPassword2: string;
+  firstname: string;
+  lastname: string;
+  number: string;
 
   @ViewChild('flipcontainer', { static: false }) flipcontainer: ElementRef;
 
@@ -32,11 +35,11 @@ export class RegisterPage implements OnInit {
   }
 
 
-  register() {
-    if (this.registerPassword === this.registerPassword2) {
-      this.authService.register(this.registerEmail, this.registerPassword).then((data) => {
-        console.log(data);
-        this.router.navigate(['home']);
+  async register() {
+    console.log(this.registerEmail, this.firstname, this.lastname, this.number)
+    if (this.registerPassword == this.registerPassword2) {
+      await this.authService.register(this.registerEmail, this.registerPassword, this.firstname, this.lastname, this.number).then((data:any) => {
+        this.router.navigate(["/tabs"])
       }).catch((err) => {
         alert(err);  
       });
@@ -49,7 +52,7 @@ export class RegisterPage implements OnInit {
   login() {
     this.authService.login(this.loginEmail, this.loginPassword).then((data) => {
       console.log(data);
-      this.router.navigate(['home']);
+      this.router.navigate(["/tabs"])
     }).catch((err) => {
       alert(err);
     });

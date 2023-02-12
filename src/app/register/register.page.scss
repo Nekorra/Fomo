@@ -18,7 +18,6 @@ ion-content {
 }
 
 #register-card {
-    top: 30%;
     border-radius: 20px;
     width: 80%;
     margin: 0 auto;
@@ -105,6 +104,7 @@ ion-checkbox{
 
 
 .flip-container {
+    margin-top: 40%;
     perspective: 1000px;
     padding-top: 40%;
   }

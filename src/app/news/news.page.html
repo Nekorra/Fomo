@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>DAVIS NEWS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card padding
+    *ngFor="let article of data | async; let i = index"
+    (click)="onGoToNewsDetail(article)"
+  >
+    <ion-img
+      [src]="article.urlToImage"
+      *ngIf="article.urlToImage !== null"
+    ></ion-img>
+    <ion-card-title
+      text-wrap
+      style="font-size: 1rem; color: #456f54; margin: 8px;"
+      *ngIf="article.urlToImage !== null"
+      >{{article.title}}</ion-card-title
+    >
+  </ion-card>
+</ion-content>

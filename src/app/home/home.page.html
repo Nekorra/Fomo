@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Upcoming Events
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,23 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Upcoming Events</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> 
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card *ngFor = "let items of myList">
+    <img src="{{items.image}}">
+    <ion-card-header>
+      <ion-card-subtitle>By: {{items.firstname}} {{items.lastname}}</ion-card-subtitle>
+      <ion-card-title>{{items.title}}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      {{items.description}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-button class="add-button" shape="circle" (click)="openModal()">
+  <ion-icon name="add-outline" ></ion-icon>
+</ion-button>

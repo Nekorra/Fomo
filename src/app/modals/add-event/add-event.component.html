@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Add Medication</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <img *ngIf="image" src="data:image/{{image.format}};base64, {{image.base64String}}"  (click)="uploadImage()">
+    <img *ngIf="!image" src="../../../assets/image-upload.png" (click)="uploadImage()">
+    <ion-card-header>
+      <ion-card-title>    
+        <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>
+      </ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+    <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="addEvent()"> Post Event </ion-button>
+</ion-content>

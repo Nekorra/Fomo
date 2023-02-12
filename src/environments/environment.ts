@@ -11,7 +11,9 @@ export const environment = {
     storageBucket: "fomo-4d424.appspot.com",
     messagingSenderId: "946707669537",
     appId: "1:946707669537:web:163cfff7ec5ed9a1f7f960"
-  }
+  },
+  API_URL: 'https://newsapi.org/v2',
+	API_KEY: '987f113bcd904744b3d242f41f3364e1'
   
 };
 

@@ -1,0 +1,41 @@
+<div class="main_content_div">
+
+  <div class="user_div">
+    <div class="first_div">
+      <ion-label class="username"> {{firstname}} </ion-label>
+      
+    </div>
+    <div class="user_back" [style.backgroundImage]="'url(assets/test.png)'"></div>
+  </div>
+</div>
+
+<ion-content >
+
+    <div class="content-div">
+      <div class="test_details">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col>
+              <div *ngIf="events.length > 0">
+                <ion-card *ngFor = "let items of events; index as indexOfelement;">
+                  <img src="{{items.image}}">
+                  <ion-card-header>
+                    <ion-card-title>{{items.title}}</ion-card-title>
+                  </ion-card-header>
+                
+                  <ion-card-content>
+                    {{items.description}}
+                  </ion-card-content>
+                  <ion-button color="danger" (click)="removeEvent(indexOfelement)">
+                    <ion-icon name="trash-outline" ></ion-icon>
+
+                  </ion-button>
+                </ion-card>
+              </div>
+              
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+</ion-content>
