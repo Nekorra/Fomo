@@ -15,7 +15,7 @@ export class EventService {
   constructor(
     private af: AngularFirestore, private storage: AngularFireStorage) { }
 
-  async addEvent(title: string, des: string, userId: string, cameraFile: Photo, firstname: string, lastname: string) {
+  async addEvent(title: string, des: string, userId: string, cameraFile: Photo, firstname: string, lastname: string, date: string) {
     
     try {
       console.log(cameraFile);
@@ -33,7 +33,8 @@ export class EventService {
         description: des,
         image: imageUrl,
         firstname: firstname,
-        lastname:  lastname
+        lastname:  lastname,
+        date: date
       })
       this.af.collection('users').doc(userId).update({
         events: arrayUnion(id)

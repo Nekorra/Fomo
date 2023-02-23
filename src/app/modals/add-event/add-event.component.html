@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Add Medication</ion-title>
+    <ion-title> Post Event</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Close</ion-button>
     </ion-buttons>
@@ -20,6 +20,16 @@
     
     <ion-card-content>
     <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
+    <ion-datetime display-format="DD/MM/YYYY" id="dat" [(ngModel)]="myDate" (ionChange)="showdate()"></ion-datetime>
+    <ion-searchbar search-icon=“undefined” placeholder="location" debounce=500 (ionChange)="search($event)" [value]="selectedAddress" style="padding: 0"></ion-searchbar>
+    <div lines="none" *ngIf="addresses.length > 0">
+      <div button *ngFor="let address of addresses" (click)="onSelect(address)">
+        <ion-icon name="pin"></ion-icon>
+        {{ address }}
+      </div>
+    </div>
+
+
     </ion-card-content>
   </ion-card>
 

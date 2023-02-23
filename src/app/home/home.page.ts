@@ -46,5 +46,12 @@ export class HomePage {
     console.log(this.myList);
   };
 
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.getEvents();
+      event.target.complete();
+    }, 2000);
+  };
+
 
 }

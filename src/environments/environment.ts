@@ -13,7 +13,10 @@ export const environment = {
     appId: "1:946707669537:web:163cfff7ec5ed9a1f7f960"
   },
   API_URL: 'https://newsapi.org/v2',
-	API_KEY: '987f113bcd904744b3d242f41f3364e1'
+	API_KEY: '987f113bcd904744b3d242f41f3364e1',
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoibmVrb3JyYSIsImEiOiJjbGUxczBiZTYxbnh2M3dueTd2ZHQ0bGl6In0.R5U0xHDwi-Dq4LqPltulAw',
+  }
   
 };
 

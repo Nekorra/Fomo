@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@capacitor/android": "4.6.2",
     "@capacitor/app": "4.1.1",
     "@capacitor/camera": "^4.1.4",
     "@capacitor/core": "4.6.2",
@@ -30,6 +31,7 @@
     "@ionic/pwa-elements": "^3.1.1",
     "firebase": "^9.17.1",
     "ionicons": "^6.0.3",
+    "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

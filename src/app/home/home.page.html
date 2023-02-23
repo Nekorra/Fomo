@@ -12,11 +12,15 @@
       <ion-title size="large">Upcoming Events</ion-title>
     </ion-toolbar>
   </ion-header> 
-
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <ion-card *ngFor = "let items of myList">
     <img src="{{items.image}}">
     <ion-card-header>
-      <ion-card-subtitle>By: {{items.firstname}} {{items.lastname}}</ion-card-subtitle>
+      <ion-card-subtitle>Post By: {{items.firstname}} {{items.lastname}}</ion-card-subtitle>
+      <ion-card-subtitle>When: {{items.date | date: "dd/MM/yyyy hh:mm a"}}</ion-card-subtitle>
       <ion-card-title>{{items.title}}</ion-card-title>
     </ion-card-header>
     

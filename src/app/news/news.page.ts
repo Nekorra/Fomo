@@ -14,7 +14,7 @@ export class NewsPage implements OnInit {
   data: Observable<any>;
 
   ngOnInit(): void {
-    this.data = this.newsService.getData("everything?domains=sacbee.com");
+    this.data = this.newsService.getData("top-headlines?country=us&category=technology");
   }
 
   onGoToNewsDetail(article) {

@@ -4,6 +4,7 @@ import { EventService } from 'src/app/services/event.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { MapboxServiceService, Feature } from 'src/app/services/mapbox-service.service';
 
 @Component({
   selector: 'app-add-event',
@@ -11,7 +12,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
   styleUrls: ['./add-event.component.scss'],
 })
 export class AddEventComponent implements OnInit {
-
+  
   title: string;
   description: string;
   userId: string;
@@ -19,14 +20,17 @@ export class AddEventComponent implements OnInit {
   firstname: string;
   lastname: string;
   userData: any;
-
+  addresses: string[] = [];
+  selectedAddress = null;
+  public myDate;
   constructor(
     private modalCtrl: ModalController,
     private eventService: EventService,
     private auth: AuthenticationService,
     private loadingController: LoadingController,
 		private alertController: AlertController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private mapboxService: MapboxServiceService
   ) { }
 
   ngOnInit() {
@@ -53,6 +57,30 @@ export class AddEventComponent implements OnInit {
     
   }
 
+
+
+  showdate(){
+    console.log(this.myDate);
+  }
+
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapboxService
+        .search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          this.addresses = features.map(feat => feat.place_name);
+        });
+      } else {
+        this.addresses = [];
+      }
+  }
+
+  onSelect(address: string) {
+    this.selectedAddress = address;
+    this.addresses = [];
+  }
+
   async uploadImage() {
     
     this.image =  await Camera.getPhoto({
@@ -71,7 +99,7 @@ export class AddEventComponent implements OnInit {
         const loading = await this.loadingController.create();
         await loading.present();
   
-        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname);
+        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate);
         loading.dismiss();
         
         if (!result) {
@@ -87,7 +115,7 @@ export class AddEventComponent implements OnInit {
             message: 'Post Successfully posted!',
             duration: 2000,
           });
-          await toast.present();
+          toast.present();
           this.dismissModal();
         }
       } else {
