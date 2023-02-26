@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content scroll-y="false">
   <div id="title">
     Events Await <br> You
   </div>
@@ -17,7 +17,7 @@
           <br>
             <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="loginPassword"></ion-input>
         </div>
-        <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" ><div style="color: white" (click)="login()">Login In </div></ion-button>
+        <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="login()"><div style="color: white" >Login In </div></ion-button>
         <div class="line">
           <br>
         </div>
@@ -63,7 +63,7 @@
                 <br>
                 <ion-input placeholder = "Phone Number" type = "tel" class="input"  [(ngModel)]="number"></ion-input>
             </div>
-            <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;"><div style="color: white" (click)="register()">Create Account </div></ion-button>
+            <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="register()"><div style="color: white" >Create Account </div></ion-button>
             <div class="line">
               <br>
             </div>
@@ -76,7 +76,7 @@
 
       </ion-slides>
      
-
+      
 
      
     </div>
