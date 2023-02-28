@@ -10,12 +10,16 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ["./news.page.scss"],
 })
 export class NewsPage implements OnInit {
+  Date = new Date();
+Math: any;
   constructor(private newsService: NewsService, private router: Router) {}
-
+  currentDate: any;
   data: any[] = [];
   tempData: any;
   numberToLoad: number = 0;
   ngOnInit(): void {
+    this.currentDate = (new Date()).toISOString();
+    console.log(this.currentDate)
     this.numberToLoad = 0;
     this.newsService.getData("public?s=0&l=20&_=1677560254553").subscribe((res) => {
       this.data = res;
@@ -43,6 +47,19 @@ export class NewsPage implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  calculateDiff(date: string){
+    let d2: Date = new Date();
+    let d1 = Date.parse(date); //time in milliseconds
+    var timeDiff = d2.getTime() - d1;
+    console.log(timeDiff);
+    var diff = timeDiff / 3600000;
+    return Math.floor(diff);
+  }
+
+  roundNumber(n: number) {
+    return Math.floor(n);
   }
 
 }

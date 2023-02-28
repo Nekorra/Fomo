@@ -9,10 +9,16 @@
     <ion-item *ngFor="let article of data" (click)="onGoToNewsDetail(article)">
     <ion-label>
       <img src="https://ucd-aggiefeed-www-prod.s3.amazonaws.com{{article.icon}}" height = "30" width="30">
-      <div style="font-weight: bold;" class="ion-text-wrap" [innerHTML]=" article.title ">
+      <div style="font-weight: bold;" class="ion-text-wrap" [innerHTML]=" article.title">
         
       </div>
-      <p [innerHTML]="article.actor.displayName" >
+      <ion-icon name="chevron-forward-outline" style="float:right"></ion-icon>
+
+      <p style="float: left;" class="ion-text-wrap">
+        {{calculateDiff(article.ucdEdusMeta.startDate) > 24 ? roundNumber(calculateDiff(article.ucdEdusMeta.startDate)/24) + "d ago &nbsp;|" : calculateDiff(article.ucdEdusMeta.startDate) + "h ago &nbsp;|" }}
+      </p>
+      <p>
+        &nbsp; {{article.actor.displayName}}
       </p>
       <h4 [innerHTML]="article.object.content" style="white-space: inherit">
       </h4>

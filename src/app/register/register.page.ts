@@ -47,9 +47,17 @@ export class RegisterPage implements OnInit {
       await this.authService.register(this.registerEmail, this.registerPassword, this.firstname, this.lastname, this.number).then((data:any) => {
         loading.dismiss()
         this.router.navigate(["/tabs"])
-      }).catch((err) => {
-        alert(err);  
+      }).catch(async (err) => {
+        loading.dismiss();
+        let toast = await this.toastController.create({
+          message: `Cannot sign-up an account. ${err.message}`,
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+
       });
+
     } else {
       loading.dismiss()
       alert('Passwords do not match');
@@ -64,9 +72,15 @@ export class RegisterPage implements OnInit {
       console.log(data);
       loading.dismiss();
       this.router.navigate(["/tabs"])
-    }).catch((err) => {
+    }).catch(async (err) => {
       loading.dismiss();
-      alert(err);
+      let toast = await this.toastController.create({
+        message: `Cannot sign-up an account. ${err.message}`,
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+
     });
   }
 
