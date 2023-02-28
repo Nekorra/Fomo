@@ -5,19 +5,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-card padding
-    *ngFor="let article of data | async; let i = index"
-    (click)="onGoToNewsDetail(article)"
-  >
-    <ion-img
-      [src]="article.urlToImage"
-      *ngIf="article.urlToImage !== null"
-    ></ion-img>
-    <ion-card-title
-      text-wrap
-      style="font-size: 1rem; color: #456f54; margin: 8px;"
-      *ngIf="article.urlToImage !== null"
-      >{{article.title}}</ion-card-title
-    >
-  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let article of data" (click)="onGoToNewsDetail(article)">
+    <ion-label>
+      <img src="https://ucd-aggiefeed-www-prod.s3.amazonaws.com{{article.icon}}" height = "30" width="30">
+      <div style="font-weight: bold;" class="ion-text-wrap" [innerHTML]=" article.title ">
+        
+      </div>
+      <p [innerHTML]="article.actor.displayName" >
+      </p>
+      <h4 [innerHTML]="article.object.content" style="white-space: inherit">
+      </h4>
+    </ion-label>
+
+  </ion-item>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+  </ion-list>
+  
 </ion-content>

@@ -6,7 +6,6 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 const apiUrl = environment.API_URL;
-const apiKey = environment.API_KEY;
 
 @Injectable({
   providedIn: "root",
@@ -18,9 +17,7 @@ export class NewsService {
 
   getData(url: string): Observable<any> {
     try {
-      return this.http
-        .get(`${apiUrl}/${url}&apiKey=${apiKey}`)
-        .pipe(map((res) => res["articles"]));
+      return this.http.get(`${apiUrl}/${url}`);
     } catch (error) {
       console.log("An error occured while fetching data: ", error);
     }

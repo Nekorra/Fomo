@@ -9,27 +9,33 @@
 
 <ion-content no-padding>
   <ion-card no-padding>
-    <ion-img [src]="article.urlToImage"></ion-img>
+    <ion-img *ngIf="article.object.contentImage" src="{{article.object.contentImage.dimensions.normal.url}}"></ion-img>
     <ion-card-content no-padding>
       <ion-list>
-        <ion-item *ngIf="article.author">
+        <ion-item *ngIf="article.actor.displayName">
           <ion-icon name="create" slot="start"></ion-icon>
-          Author: {{article.author}}
+          Source: {{article.actor.displayName}}
         </ion-item>
 
-        <ion-item *ngIf="article.source">
-          <ion-icon name="newspaper-outline" slot="start"></ion-icon>
-          Source: {{article.source.name}}
-        </ion-item>
-
-        <ion-item *ngIf="article.publishedAt">
+        <ion-item *ngIf="article.published">
           <ion-icon name="calendar" slot="start"></ion-icon>
-          Published: {{article.publishedAt | date}}
+          Published: {{article.published | date}}
         </ion-item>
+
+        <ion-item *ngIf="article.object.location">
+          <ion-icon name="create" slot="start"></ion-icon>
+          Where: {{article.object.location.displayName}}
+        </ion-item>
+
+        <ion-item *ngIf="article.object.ucdEdusModel.event">
+          <ion-icon name="create" slot="start"></ion-icon>
+          time: {{article.object.ucdEdusModel.event.startDate | date}}
+        </ion-item>
+
       </ion-list>
       <hr />
-      <p *ngIf="article.description">{{article.description}}</p>
-      <p *ngIf="article.content">{{article.content}}</p>
+      <p *ngIf="article.object.content" [innerHTML]="article.object.content"></p>
+      <ion-button *ngIf="article.object.ucdEdusModel.urlDisplayName" expand="block" (click)="redirect()">{{article.object.ucdEdusModel.urlDisplayName}}</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
