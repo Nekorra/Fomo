@@ -18,7 +18,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 import { HttpClientModule } from "@angular/common/http";
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,7 +30,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     HttpClientModule,
     AngularFireStorageModule,
   ],
-  providers: [InAppBrowser, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

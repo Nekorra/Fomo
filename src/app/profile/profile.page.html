@@ -1,10 +1,11 @@
-<ion-content [fullscreen]="true">
 
-  <ion-toolbar color="primary">
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
-     </ion-buttons>
-  </ion-toolbar>
+<ion-toolbar color="primary">
+  <ion-buttons slot="end">
+    <ion-button fill="clear" (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
   <ion-grid class="main-header">
     <div align="center">
       <ion-avatar>
@@ -13,6 +14,7 @@
     </div>
   </ion-grid>
 
+  
   <ion-row class="ion-padding-horizontal">
     <ion-col size="6">
       <ion-item lines="none" class="ion-text-center">
@@ -24,22 +26,21 @@
       </ion-item>
     </ion-col>
 
-    <!-- 
     <ion-col size="6">
       <ion-item lines="none" class="ion-text-center">
-        <ion-icon name="newspaper" color="primary"></ion-icon>
         <ion-label>
-          14
-          <p>Donations</p>
+          {{firstname}}
+
+          <p>Name</p>
         </ion-label>
       </ion-item>
     </ion-col>
-    -->
+
 
   </ion-row>
 
   <div class="content-div">
-    <h1 style="text-align: center;">My Events: </h1>
+    <h1 style="text-align: center; padding-bottom: 50px;">My Events: </h1>
     <div class="test_details">
       <ion-grid fixed>
         <ion-row>
