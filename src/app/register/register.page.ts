@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-register',
@@ -30,8 +31,11 @@ export class RegisterPage implements OnInit {
     private toastController: ToastController,
   ) { }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'loggedIn' });
+    if(value == 'true') {
+      this.router.navigate(["/tabs"])
+    }
   }
 
   toggleRegister() {
@@ -44,7 +48,11 @@ export class RegisterPage implements OnInit {
     await loading.present();
     console.log(this.registerEmail, this.firstname, this.lastname, this.number)
     if (this.registerPassword == this.registerPassword2) {
-      await this.authService.register(this.registerEmail, this.registerPassword, this.firstname, this.lastname, this.number).then((data:any) => {
+      await this.authService.register(this.registerEmail, this.registerPassword, this.firstname, this.lastname, this.number).then(async (data:any) => {
+        await Preferences.set({
+          key: 'loggedIn',
+          value: 'true',
+        });
         loading.dismiss()
         this.router.navigate(["/tabs"])
       }).catch(async (err) => {
@@ -68,8 +76,12 @@ export class RegisterPage implements OnInit {
   async login() {
     const loading = await this.loadingController.create();
     await loading.present();
-    this.authService.login(this.loginEmail, this.loginPassword).then((data) => {
+    this.authService.login(this.loginEmail, this.loginPassword).then(async (data) => {
       console.log(data);
+      await Preferences.set({
+        key: 'loggedIn',
+        value: 'true',
+      });
       loading.dismiss();
       this.router.navigate(["/tabs"])
     }).catch(async (err) => {

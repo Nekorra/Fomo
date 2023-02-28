@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController } from '@ionic/angular';
+import { Preferences } from '@capacitor/preferences';
+import { Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +23,8 @@ export class ProfilePage implements OnInit {
     private eventService: EventService,
     private auth: AuthenticationService,
 		private alertController: AlertController,
+    private router: Router,
+    private toastController: ToastController,
 
   ) { }
 
@@ -29,6 +34,22 @@ export class ProfilePage implements OnInit {
 
   async ionViewWillEnter() {
     await this.getUserEventData();
+  }
+
+  logout() {
+    this.auth.logout().then(async (data) => {
+      await Preferences.set({
+        key: 'loggedIn',
+        value: 'false',
+      });
+      this.router.navigate(["/register"])
+      let toast = await this.toastController.create({
+        message: 'successfully Logged Out!',
+        duration: 2000,
+        position: 'bottom'
+      });
+      toast.present();
+    });
   }
 
   async getUserData() {

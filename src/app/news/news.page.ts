@@ -19,11 +19,9 @@ Math: any;
   numberToLoad: number = 0;
   ngOnInit(): void {
     this.currentDate = (new Date()).toISOString();
-    console.log(this.currentDate)
     this.numberToLoad = 0;
     this.newsService.getData("public?s=0&l=20&_=1677560254553").subscribe((res) => {
       this.data = res;
-      console.log(this.data);
     });
   }
 
@@ -39,7 +37,6 @@ Math: any;
         this.data.push(res[i]);
       }
     })
-    console.log(this.data);
   }
 
   onIonInfinite(ev) {
@@ -53,7 +50,6 @@ Math: any;
     let d2: Date = new Date();
     let d1 = Date.parse(date); //time in milliseconds
     var timeDiff = d2.getTime() - d1;
-    console.log(timeDiff);
     var diff = timeDiff / 3600000;
     return Math.floor(diff);
   }
