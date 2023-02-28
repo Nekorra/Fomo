@@ -32,9 +32,13 @@ export class RegisterPage implements OnInit {
   ) { }
 
   async ngOnInit() {
+
     const { value } = await Preferences.get({ key: 'loggedIn' });
     if(value == 'true') {
+      const loading = await this.loadingController.create();
+      await loading.present();
       this.router.navigate(["/tabs"])
+      loading.dismiss()
     }
   }
 
