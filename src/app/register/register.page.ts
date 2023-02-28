@@ -3,6 +3,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -29,17 +30,20 @@ export class RegisterPage implements OnInit {
     private loadingController: LoadingController,
 		private alertController: AlertController,
     private toastController: ToastController,
+    private platform: Platform
   ) { }
 
   async ngOnInit() {
-
-    const { value } = await Preferences.get({ key: 'loggedIn' });
-    if(value == 'true') {
-      const loading = await this.loadingController.create();
-      await loading.present();
-      this.router.navigate(["/tabs"])
-      loading.dismiss()
+    this.platform.ready().then(async (data) => {
+      const { value } = await Preferences.get({ key: 'loggedIn' });
+      if(value == 'true') {
+        const loading = await this.loadingController.create();
+        await loading.present();
+        this.router.navigate(["/tabs"])
+        loading.dismiss()
     }
+    });
+    
   }
 
   toggleRegister() {

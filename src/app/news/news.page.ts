@@ -3,6 +3,7 @@ import { NewsService } from "../services/news.service";
 import { Router } from "@angular/router";
 import { Observable, merge } from "rxjs";
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: "app-news",
@@ -12,18 +13,29 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
 export class NewsPage implements OnInit {
   Date = new Date();
 Math: any;
-  constructor(private newsService: NewsService, private router: Router) {}
+  constructor(
+    private newsService: NewsService, 
+    private router: Router,
+    private loadingController: LoadingController,
+    ) {}
   currentDate: any;
   data: any[] = [];
   tempData: any;
   numberToLoad: number = 0;
-  ngOnInit(): void {
+
+
+  async ngOnInit() {
+    const loading = await this.loadingController.create();
+    await loading.present();
     this.currentDate = (new Date()).toISOString();
     this.numberToLoad = 0;
     this.newsService.getData("public?s=0&l=20&_=1677560254553").subscribe((res) => {
       this.data = res;
+      loading.dismiss()
+
     });
   }
+  
 
   onGoToNewsDetail(article) {
     this.newsService.currentArticle = article;
