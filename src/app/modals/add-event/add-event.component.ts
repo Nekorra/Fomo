@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EventService } from 'src/app/services/event.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { MapboxServiceService, Feature } from 'src/app/services/mapbox-service.service';
+import { Geolocation } from '@capacitor/geolocation';
+
+declare var google;
 
 @Component({
   selector: 'app-add-event',
@@ -20,9 +22,18 @@ export class AddEventComponent implements OnInit {
   firstname: string;
   lastname: string;
   userData: any;
-  addresses: string[] = [];
-  selectedAddress = null;
   public myDate;
+
+  map: any;
+  address:string;
+  lat: string;
+  long: string;  
+  autocomplete: { input: string; };
+  autocompleteItems: any[];
+  location: any;
+  placeid: any;
+  GoogleAutocomplete: any;
+
   constructor(
     private modalCtrl: ModalController,
     private eventService: EventService,
@@ -30,12 +41,50 @@ export class AddEventComponent implements OnInit {
     private loadingController: LoadingController,
 		private alertController: AlertController,
     private toastController: ToastController,
-    private mapboxService: MapboxServiceService
-  ) { }
+    public zone: NgZone,
+  ) {
+    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+    this.autocomplete = { input: '' };
+    this.autocompleteItems = [];
+   }
 
   ngOnInit() {
     this.getUserData();
   }
+
+
+  UpdateSearchResults(){
+    if (this.autocomplete.input == '') {
+      this.autocompleteItems = [];
+      return;
+    }
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.autocomplete.input },
+    (predictions, status) => {
+      this.autocompleteItems = [];
+      this.zone.run(() => {
+        predictions.forEach((prediction) => {
+          this.autocompleteItems.push(prediction);
+        });
+      });
+    });
+  }
+  
+  //wE CALL THIS FROM EACH ITEM.
+  SelectSearchResult(item) {
+    ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
+    //alert(JSON.stringify(item))   
+    this.address = item.description 
+    this.autocompleteItems = []
+  }
+  
+  
+  //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
+  ClearAutocomplete(){
+    this.autocompleteItems = []
+    this.autocomplete.input = ''
+  }
+
+
 
   async getUserData() {
     await this.auth.getUser().then((data: any) => {
@@ -63,24 +112,6 @@ export class AddEventComponent implements OnInit {
     console.log(this.myDate);
   }
 
-  search(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.mapboxService
-        .search_word(searchTerm)
-        .subscribe((features: Feature[]) => {
-          this.addresses = features.map(feat => feat.place_name);
-        });
-      } else {
-        this.addresses = [];
-      }
-  }
-
-  onSelect(address: string) {
-    this.selectedAddress = address;
-    this.addresses = [];
-  }
-
   async uploadImage() {
     
     this.image =  await Camera.getPhoto({
@@ -99,7 +130,7 @@ export class AddEventComponent implements OnInit {
         const loading = await this.loadingController.create();
         await loading.present();
   
-        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate);
+        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate, this.address);
         loading.dismiss();
         
         if (!result) {

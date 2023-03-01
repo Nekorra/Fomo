@@ -31,13 +31,14 @@
     
 
     <ion-datetime display-format="DD/MM/YYYY" id="dat" [(ngModel)]="myDate" (ionChange)="showdate()"></ion-datetime>
-    <ion-searchbar search-icon=“undefined” placeholder="location" debounce=500 (ionChange)="search($event)" [value]="selectedAddress" style="padding: 0"></ion-searchbar>
-    <div lines="none" *ngIf="addresses.length > 0">
-      <div button *ngFor="let address of addresses" (click)="onSelect(address)">
-        <ion-icon name="pin"></ion-icon>
-        {{ address }}
-      </div>
-    </div>
+
+
+  <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="Search for a place"  (ionClear)="ClearAutocomplete()" [value]="address"></ion-searchbar>
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
 
 
     </ion-card-content>

@@ -18,7 +18,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 import { HttpClientModule } from "@angular/common/http";
-
+import { LaunchNavigator } from '@awesome-cordova-plugins/launch-navigator/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +31,9 @@ import { HttpClientModule } from "@angular/common/http";
     AngularFirestoreModule,
     HttpClientModule,
     AngularFireStorageModule,
+    
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [LaunchNavigator, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
