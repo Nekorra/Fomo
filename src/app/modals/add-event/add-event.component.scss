@@ -3,3 +3,9 @@ ion-card img {
     height: 300px;
     object-fit: cover; 
   }
+
+ion-item::part(native) {
+  //WRITE ALL YOUR CSS RULES HERE
+  padding-left: unset;
+  /** and lots more **/
+}

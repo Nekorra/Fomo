@@ -16,10 +16,20 @@
       <ion-card-title>    
         <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>
       </ion-card-title>
+      <ion-card-subtitle>
+        <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
+      </ion-card-subtitle>
     </ion-card-header>
     
     <ion-card-content>
-    <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
+    
+    <ion-list lines="full">
+      <ion-item > 
+        <ion-label> <div style="color:gray; float: left;"> Start</div> <div style="float: right;">{{myDate | date:'short'}}</div> </ion-label>
+      </ion-item>
+    </ion-list>
+    
+
     <ion-datetime display-format="DD/MM/YYYY" id="dat" [(ngModel)]="myDate" (ionChange)="showdate()"></ion-datetime>
     <ion-searchbar search-icon=“undefined” placeholder="location" debounce=500 (ionChange)="search($event)" [value]="selectedAddress" style="padding: 0"></ion-searchbar>
     <div lines="none" *ngIf="addresses.length > 0">

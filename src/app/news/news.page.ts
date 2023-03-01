@@ -32,7 +32,6 @@ Math: any;
     this.newsService.getData("public?s=0&l=20&_=1677560254553").subscribe((res) => {
       this.data = res;
       loading.dismiss()
-
     });
   }
   
