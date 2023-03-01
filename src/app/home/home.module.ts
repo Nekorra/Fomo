@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { AddEventComponent } from '../modals/add-event/add-event.component';
+import { EventInfoComponent } from '../modals/event-info/event-info.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +14,10 @@ import { AddEventComponent } from '../modals/add-event/add-event.component';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, AddEventComponent,
+  declarations: [
+    HomePage, 
+    AddEventComponent,
+    EventInfoComponent,
   ]
 })
 export class HomePageModule {}

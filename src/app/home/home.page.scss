@@ -8,23 +8,6 @@
   transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
 
 .add-button[shape=circle] {
   --border-radius: 50%;
@@ -33,4 +16,46 @@
   position: absolute;
   bottom: 1%;
   right: 2%;
+}
+ion-slides {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.featured-slide {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	.info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+img { 
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.title {
+  padding-top: 10px;
+}
+
+.author {
+  font-size: 15px;
+}
+
+.location {
+  font-size: 15px;
+}
+
+.category {
+  padding-left: 20px;
+  font-weight: 600;
 }

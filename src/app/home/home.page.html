@@ -1,6 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>
       Upcoming Events
     </ion-title>
   </ion-toolbar>
@@ -16,18 +16,26 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <ion-card *ngFor = "let items of myList">
-    <img src="{{items.image}}">
-    <ion-card-header>
-      <ion-card-subtitle>Post By: {{items.firstname}} {{items.lastname}}</ion-card-subtitle>
-      <ion-card-subtitle>When: {{items.date | date: "dd/MM/yyyy hh:mm a"}}</ion-card-subtitle>
-      <ion-card-title>{{items.title}}</ion-card-title>
-    </ion-card-header>
+  <h4 class="category">Featured</h4>
+
+  <ion-slides [options]="option">
+    <ion-slide *ngFor = "let items of myList; let indexOfelement = index;" class="featured-slide" (click)="openEventInfo(indexOfelement)">
+
+      <img src="{{items.image}}" />
+			<div class="info">
+				<ion-text color="dark" class="title"><b>{{items.title}}</b></ion-text>
+        <span class="location">When: {{items.date | date: "dd/MM/yyyy hh:mm a"}} </span>
+        <span>
+					<ion-text color="dark" class="author"> Host: {{items.firstname}} {{items.lastname}} </ion-text>
+				</span>
+
+      </div>
+      
+
+    </ion-slide>
     
-    <ion-card-content>
-      {{items.description}}
-    </ion-card-content>
-  </ion-card>
+  </ion-slides>
+  
 </ion-content>
 
 <ion-button class="add-button" shape="circle" (click)="openModal()">

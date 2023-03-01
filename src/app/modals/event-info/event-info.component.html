@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Event Info</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <img src="{{myList[index].image}}">
+    <ion-card-header>
+      <ion-card-subtitle>Post By: {{myList[index].firstname}} {{myList[index].lastname}}</ion-card-subtitle>
+      <ion-card-subtitle>When: {{myList[index].date | date: "dd/MM/yyyy hh:mm a"}}</ion-card-subtitle>
+      <ion-card-title>{{myList[index].title}}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      {{myList[index].description}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

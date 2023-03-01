@@ -85,12 +85,12 @@ export class AddEventComponent implements OnInit {
     
     this.image =  await Camera.getPhoto({
 			quality: 90,
-			allowEditing: false,
+			allowEditing: true,
 			resultType: CameraResultType.Base64,
 			source: CameraSource.Photos // Camera, Photos or Prompt!
 		});
     console.log(this.image);
-   
+    
   }
 
   async addEvent() {
