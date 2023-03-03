@@ -46,6 +46,10 @@ export class RegisterPage implements OnInit {
     
   }
 
+  next(slides) {
+    slides.slideNext()
+  }
+
   toggleRegister() {
     this.flipcontainer.nativeElement.classList.toggle('flip');
   }

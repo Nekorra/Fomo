@@ -131,7 +131,7 @@ export class AddEventComponent implements OnInit {
       // Classify the image.
       model.classify(img).then((predictions) => {
         console.log("Predictions", predictions);
-        if ((predictions[0].className === "Neutral" && predictions[1].className === "Drawing") || (predictions[0].className === "Drawing" && predictions[1].className === "Neutral") || (predictions[0].className === "Drawing" && predictions[0].probability > 0.9) || (predictions[0].className === "Neutral" && predictions[0].probability > 0.9)) {
+        if ((predictions[0].className === "Neutral" && predictions[1].className === "Drawing") || (predictions[0].className === "Drawing" && predictions[1].className === "Neutral") || (predictions[0].className === "Drawing" && predictions[0].probability > 0.9) || (predictions[0].className === "Neutral" && predictions[0].probability > 0.75)) {
           loading.dismiss();
           this.getBase64ImageFromUrl(this.image.webPath).then((data) => {
             this.image = data;

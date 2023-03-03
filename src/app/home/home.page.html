@@ -21,7 +21,7 @@
   <ion-slides [options]="option">
     <ion-slide *ngFor = "let items of myList; let indexOfelement = index;" class="featured-slide" (click)="openEventInfo(indexOfelement)">
 
-      <img src="{{items.image}}" />
+      <ion-img src="{{items.image}}"></ion-img>
 			<div class="info">
 				<ion-text color="dark" class="title"><b>{{items.title}}</b></ion-text>
         <span class="location">When: {{items.date | date: "dd/MM/yyyy hh:mm a"}} </span>
