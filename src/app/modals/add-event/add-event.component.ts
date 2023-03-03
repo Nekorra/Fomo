@@ -67,7 +67,7 @@ export class AddEventComponent implements OnInit {
       this.zone.run(() => {
         predictions.forEach((prediction) => {
           this.autocompleteItems.push(prediction);
-        });
+        }); 
       });
     });
   }
