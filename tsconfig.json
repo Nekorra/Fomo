@@ -26,6 +26,13 @@
     ],
     "useDefineForClassFields": false,
     "strictPropertyInitialization": false,
+    "paths":{
+      "stream": ["./node_modules/stream-browserify"],
+      "assert": ["./node_modules/assert/"],
+      "util": ["./node_modules/util"],
+      "zlib": ["./node_modules/zlib"],
+      "path": ["./node_modules/path-browserify"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

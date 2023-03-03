@@ -4,9 +4,10 @@ import { EventService } from 'src/app/services/event.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { Geolocation } from '@capacitor/geolocation';
+
 
 declare var google;
+import * as nsfwjs from 'nsfwjs'
 
 @Component({
   selector: 'app-add-event',
@@ -15,6 +16,8 @@ declare var google;
 })
 export class AddEventComponent implements OnInit {
   
+  @ViewChild("selectedImage") selectedImage: any ;
+
   title: string;
   description: string;
   userId: string;
@@ -113,15 +116,55 @@ export class AddEventComponent implements OnInit {
   }
 
   async uploadImage() {
-    
-    this.image =  await Camera.getPhoto({
+    const loading = await this.loadingController.create({message: "Checking for inappropriate content..."});
+    this.image = await Camera.getPhoto({
 			quality: 90,
 			allowEditing: true,
-			resultType: CameraResultType.Base64,
+			resultType: CameraResultType.Uri,
 			source: CameraSource.Photos // Camera, Photos or Prompt!
 		});
+    await loading.present();
     console.log(this.image);
+    var img = new Image();
+    img.src = this.image.webPath;
+    nsfwjs.load().then(async (model) => {
+      // Classify the image.
+      model.classify(img).then((predictions) => {
+        console.log("Predictions", predictions);
+        if ((predictions[0].className === "Neutral" && predictions[1].className === "Drawing") || (predictions[0].className === "Drawing" && predictions[1].className === "Neutral") || (predictions[0].className === "Drawing" && predictions[0].probability > 0.9) || (predictions[0].className === "Neutral" && predictions[0].probability > 0.9)) {
+          loading.dismiss();
+          this.getBase64ImageFromUrl(this.image.webPath).then((data) => {
+            this.image = data;
+          });
+            
+        } else {
+          loading.dismiss();
+          this.image = undefined;
+          alert("Please select another Image, inappropriate content found!");
+        }
+        
+      });
+    });
     
+
+    
+  }
+
+  async getBase64ImageFromUrl(imageUrl) {
+    var res = await fetch(imageUrl);
+    var blob = await res.blob();
+  
+    return new Promise((resolve, reject) => {
+      var reader  = new FileReader();
+      reader.addEventListener("load", function () {
+          resolve(reader.result);
+      }, false);
+  
+      reader.onerror = () => {
+        return reject(this);
+      };
+      reader.readAsDataURL(blob);
+    })
   }
 
   async addEvent() {
@@ -129,7 +172,8 @@ export class AddEventComponent implements OnInit {
       if (this.description && this.title) {
         const loading = await this.loadingController.create();
         await loading.present();
-  
+
+
         const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate, this.address);
         loading.dismiss();
         

@@ -10,8 +10,8 @@
 <ion-content class="ion-padding">
 
   <ion-card>
-    <img *ngIf="image" src="data:image/{{image.format}};base64, {{image.base64String}}"  (click)="uploadImage()">
-    <img *ngIf="!image" src="../../../assets/image-upload.png" (click)="uploadImage()">
+    <img id="selectedImage" *ngIf="image" src="{{this.image}}"  (click)="uploadImage()">
+    <img id="selectedImage" *ngIf="!image" src="../../../assets/image-upload.png" (click)="uploadImage()">
     <ion-card-header>
       <ion-card-title>    
         <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>
