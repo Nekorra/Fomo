@@ -1,90 +1,97 @@
 <ion-content scroll-y="false">
-  <div id="title">
-    Events Await <br> You
-  </div>
+  <svg width="432" height="112" viewBox="0 0 432 112" fill="none" xmlns="http://www.w3.org/2000/svg"  id="logo">
+    <path d="M69.736 5.91199V25.64H28.552V46.952H59.368V66.104H28.552V107H3.92799V5.91199H69.736Z" stroke="black" stroke-width="7"/>
+    <path d="M130.486 108.008C120.982 108.008 112.246 105.8 104.278 101.384C96.406 96.968 90.118 90.824 85.414 82.952C80.806 74.984 78.502 66.056 78.502 56.168C78.502 46.28 80.806 37.4 85.414 29.528C90.118 21.656 96.406 15.512 104.278 11.096C112.246 6.68 120.982 4.472 130.486 4.472C139.99 4.472 148.678 6.68 156.55 11.096C164.518 15.512 170.758 21.656 175.27 29.528C179.878 37.4 182.182 46.28 182.182 56.168C182.182 66.056 179.878 74.984 175.27 82.952C170.662 90.824 164.422 96.968 156.55 101.384C148.678 105.8 139.99 108.008 130.486 108.008ZM130.486 85.544C138.55 85.544 144.982 82.856 149.782 77.48C154.678 72.104 157.126 65 157.126 56.168C157.126 47.24 154.678 40.136 149.782 34.856C144.982 29.48 138.55 26.792 130.486 26.792C122.326 26.792 115.798 29.432 110.902 34.712C106.102 39.992 103.702 47.144 103.702 56.168C103.702 65.096 106.102 72.248 110.902 77.624C115.798 82.904 122.326 85.544 130.486 85.544Z" stroke="black" stroke-width="7"/>
+    <path d="M310.361 5.91199V107H285.737V46.376L263.129 107H243.257L220.505 46.232V107H195.881V5.91199H224.969L253.337 75.896L281.417 5.91199H310.361Z" stroke="black" stroke-width="7"/>
+    <path d="M375.877 108.008C366.373 108.008 357.637 105.8 349.669 101.384C341.797 96.968 335.509 90.824 330.805 82.952C326.197 74.984 323.893 66.056 323.893 56.168C323.893 46.28 326.197 37.4 330.805 29.528C335.509 21.656 341.797 15.512 349.669 11.096C357.637 6.68 366.373 4.472 375.877 4.472C385.381 4.472 394.069 6.68 401.941 11.096C409.909 15.512 416.149 21.656 420.661 29.528C425.269 37.4 427.573 46.28 427.573 56.168C427.573 66.056 425.269 74.984 420.661 82.952C416.053 90.824 409.813 96.968 401.941 101.384C394.069 105.8 385.381 108.008 375.877 108.008ZM375.877 85.544C383.941 85.544 390.373 82.856 395.173 77.48C400.069 72.104 402.517 65 402.517 56.168C402.517 47.24 400.069 40.136 395.173 34.856C390.373 29.48 383.941 26.792 375.877 26.792C367.717 26.792 361.189 29.432 356.293 34.712C351.493 39.992 349.093 47.144 349.093 56.168C349.093 65.096 351.493 72.248 356.293 77.624C361.189 82.904 367.717 85.544 375.877 85.544Z" stroke="black" stroke-width="7"/>
+    </svg>
 
 
-  <div class="flip-container" #flipcontainer>
-    <div class="flipper">
-      <div class="front">
-         
-      <ion-card id="register-card">
-        <ion-card-header>
-          <ion-card-title>Login</ion-card-title>
-        </ion-card-header>
-        <div class = "ion-padding">
-          <ion-input placeholder = "email"  class="input" [(ngModel)]="loginEmail"></ion-input>
-          <br>
-            <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="loginPassword"></ion-input>
-        </div>
-        <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="login()"><div style="color: white" >Login In </div></ion-button>
-        <div class="line">
-          <br>
-        </div>
-        <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Don't have an Account? <div style="font-weight: bold"> Sign Up </div>
-        
-        </ion-button> 
-      </ion-card>
-      </div>  
-    <div class="back">
+<br> <br>
+<div class="flip-container" #flipcontainer>
 
-      <ion-slides #slides pager="false">
+  <div class="flipper">
 
-        <ion-slide>
-          <ion-card id="register-card">
-            <ion-card-header>
-              <ion-card-title>Sign Up</ion-card-title>
-            </ion-card-header>
-            <div class = "ion-padding">
-              <ion-input placeholder = "First Name"  class="input" [(ngModel)] = "firstname"></ion-input>
-              <br>
-                <ion-input placeholder = "Last Name" class="input" [(ngModel)]="lastname"></ion-input>
-                <br>
-                <ion-input placeholder = "Phone Number" type = "tel" class="input"  [(ngModel)]="number"></ion-input>
-            </div>
-            <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="next(slides)"><div style="color: white " >Continue </div></ion-button>
-            <div class="line">
-              <br>
-            </div>
-            <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> Log In </div>
-            
-            </ion-button> 
-          </ion-card>
-        </ion-slide>
-        
-        <ion-slide>
-          <ion-card id="register-card">
-            <ion-card-header>
-              <ion-card-title>Sign Up</ion-card-title>
-            </ion-card-header>
-            <div class = "ion-padding">
-              <ion-input placeholder = "email" type="email" class="input" [(ngModel)] = "registerEmail"></ion-input>
-              <br>
-                <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="registerPassword"></ion-input>
-                <br>
-                <ion-input placeholder = "Repeat Password" type = "password" class="input"  [(ngModel)]="registerPassword2"></ion-input>
-            </div>
-            <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="register()"><div style="color: white" >Create Account </div></ion-button>
-
-            <div class="line">
-              <br>
-            </div>
-            <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> Log In </div>
-            
-            </ion-button> 
-          </ion-card>
-        </ion-slide>
-
+    <div class="front">
        
-
-
-      </ion-slides>
-     
+    <ion-card id="register-card">
+      <ion-card-header>
+        <ion-card-title>Login</ion-card-title>
+      </ion-card-header>
+      <div class = "ion-padding">
+        <ion-input placeholder = "Email"  class="input" [(ngModel)]="loginEmail"></ion-input>
+        <br>
+          <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="loginPassword"></ion-input>
+      </div>
+      <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="login()"><div style="color: white" >Login In </div></ion-button>
+      <div class="line">
+        <br>
+      </div>
+      <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account?<div style="font-weight: bold"> &nbsp; Sign Up </div>
       
+      </ion-button> 
+    </ion-card>
+    </div>  
+
+  <div class="back">
+
+    <ion-slides #slides pager="false">
+
+      <ion-slide>
+        <ion-card id="register-card">
+          <ion-card-header>
+            <ion-card-title>Sign Up</ion-card-title>
+          </ion-card-header>
+          <div class = "ion-padding">
+            <ion-input placeholder = "First Name"  class="input" [(ngModel)] = "firstname"></ion-input>
+            <br>
+              <ion-input placeholder = "Last Name" class="input" [(ngModel)]="lastname"></ion-input>
+              <br>
+              <ion-input placeholder = "Phone Number" type = "tel" class="input"  [(ngModel)]="number"></ion-input>
+          </div>
+          <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="next(slides)"><div style="color: white " >Continue </div></ion-button>
+          <div class="line">
+            <br>
+          </div>
+          <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> &nbsp; Log In </div>
+          
+          </ion-button> 
+        </ion-card>
+      </ion-slide>
+      
+      <ion-slide>
+        <ion-card id="register-card">
+          <ion-card-header>
+            <ion-card-title>Sign Up</ion-card-title>
+          </ion-card-header>
+          <div class = "ion-padding">
+            <ion-input placeholder = "email" type="email" class="input" [(ngModel)] = "registerEmail"></ion-input>
+            <br>
+              <ion-input placeholder = "Password" type = "password" class="input" [(ngModel)]="registerPassword"></ion-input>
+              <br>
+              <ion-input placeholder = "Repeat Password" type = "password" class="input"  [(ngModel)]="registerPassword2"></ion-input>
+          </div>
+          <ion-button class = "actionbutton" expand = "full" fill = "clear" style = "text-transform: none;" (click)="register()"><div style="color: white" >Create Account </div></ion-button>
+
+          <div class="line">
+            <br>
+          </div>
+          <ion-button fill = "clear" style = "font-size: 11px; padding-bottom: 5px; margin-right: 10px; text-transform: none; font-weight: 400;" (click)="toggleRegister()">Already Have An Account? <div style="font-weight: bold"> &nbsp; Log In </div>
+          
+          </ion-button> 
+        </ion-card>
+      </ion-slide>
 
      
-    </div>
-  </div>  
+
+
+    </ion-slides>
+   
+    
+
+   
+  </div>
+</div>  
 </div>
 
 

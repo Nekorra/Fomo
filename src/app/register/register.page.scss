@@ -1,27 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
 ion-content {
     --overflow: hidden;
     --background: #F2F6FF;
+    font-family: 'Poppins', sans-serif;
 }
 
-#title {
-    position: relative;
-    height: 113px;
-    text-align: center;
-    top: 13%;
-    font-family: 'Abhaya_Libre_regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 34px;
-    letter-spacing: 0.374px;
-
-    color: #000000;
+#logo {
+    position: absolute;
+    top: 10%;
+    left: 50%; 
+    transform: translate(-50%, -10%);
+    animation: fill 0.5s ease forwards 2.5s; 
+    width: 80%;
+    margin-bottom: 30%;
 }
+
+  #logo path:nth-child(1){
+    stroke-dasharray:  395.4240417480469px;
+    stroke-dashoffset: 395.4240417480469px;
+    animation: line-anim 2s ease forwards; 
+  }
+  
+  #logo path:nth-child(2){
+    stroke-dasharray: 506.5435791015625px;
+    stroke-dashoffset: 506.5435791015625px;
+    animation: line-anim 2s ease forwards 0.1s;
+  }
+  #logo path:nth-child(3){
+    stroke-dasharray: 731.232177734375px;
+    stroke-dashoffset: 731.232177734375px;
+    animation: line-anim 2s ease forwards 0.2s;
+  }
+  #logo path:nth-child(4){
+    stroke-dasharray: 506.54364013671875px;
+    stroke-dashoffset: 506.54364013671875px;
+    animation: line-anim 2s ease forwards 0.3s;
+  }
+  
+  @keyframes line-anim {
+      to{
+        stroke-dashoffset: 0px;
+      }
+    
+  }
+  @keyframes fill {
+    from{
+      fill: transparent;
+    }
+    to{
+      fill:black; 
+    }
+  }
 
 #register-card {
     border-radius: 20px;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
-
 }
 
 ion-input {
@@ -44,7 +80,6 @@ ion-input {
     font-size: small;
     color: black;
     text-align: center;
-    font-family: "Nunito", sans-serif;
     text-transform: none;
 }
 
@@ -52,7 +87,6 @@ ion-input {
     font-size: x-small;
     color: black;
     text-align: center;
-    font-family: "Nunito", sans-serif;
     text-transform: none;
 }
 
@@ -67,7 +101,6 @@ ion-input{
 
 .input{
     padding-left: 10px !important; 
-    font-family: 'Nunito, san-serif;'
 }
 
 .actionbutton{
@@ -76,7 +109,6 @@ ion-input{
     margin-left: 15px;
     margin-right: 13px;
     font-size: small;
-    font-family:"SF Pro Text";
     background: #8359E3;
     box-shadow: 0px 30px 30px rgba(69, 42, 124, 0.15);
     backdrop-filter: blur(30px);
@@ -104,7 +136,6 @@ ion-checkbox{
 
 
 .flip-container {
-    margin-top: 40%;
     perspective: 1000px;
     padding-top: 40%;
   }
@@ -117,23 +148,18 @@ ion-checkbox{
   .front,
   .back {
     width: 100%;
-    height: 600px;
   }
   .flipper {
     transition: 0.6s;
     transform-style: preserve-3d;
-   
-    position: relative;
   }
   
   .front,
   .back {
     backface-visibility: hidden;
-   
     position: absolute;
-    top: 0;
-    left: 0;
   }
+
   .front {
     z-index: 2;
   }
@@ -141,3 +167,4 @@ ion-checkbox{
     transform: rotateY(180deg);
   }
   
+
