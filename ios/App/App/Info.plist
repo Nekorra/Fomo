@@ -20,10 +20,34 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>citymapper</string>
+		<string>comgooglemaps</string>
+		<string>navigon</string>
+		<string>transit</string>
+		<string>waze</string>
+		<string>yandexnavi</string>
+		<string>uber</string>
+		<string>tomtomhome</string>
+		<string>com.sygic.aura</string>
+		<string>here-route</string>
+		<string>moovit</string>
+		<string>lyft</string>
+		<string>mapsme</string>
+		<string>cabify</string>
+		<string>baidumap</string>
+		<string>taxis99</string>
+		<string>iosamap</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access camera for taking picture of event</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location for places api</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location for places api</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Accessing photos to upload for event</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -32,10 +56,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location for places api</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location for places api</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -55,28 +75,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-
-	<key>LSApplicationQueriesSchemes</key>
-        <array>
-        <string>citymapper</string>
-        <string>comgooglemaps</string>
-        <string>navigon</string>
-        <string>transit</string>
-        <string>waze</string>
-        <string>yandexnavi</string>
-        <string>uber</string>
-        <string>tomtomhome</string>
-        <string>com.sygic.aura</string>
-        <string>here-route</string>
-        <string>moovit</string>
-        <string>lyft</string>
-        <string>mapsme</string>
-        <string>cabify</string>
-        <string>baidumap</string>
-        <string>taxis99</string>
-        <string>iosamap</string>
-        </array>
-
 </dict>
-
 </plist>

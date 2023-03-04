@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@awesome-cordova-plugins/launch-navigator/ngx';
-import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-event-info',
@@ -14,8 +13,7 @@ export class EventInfoComponent implements OnInit {
   index: number;
   indexInside: number;
   key: any;
-  lat: any;
-  long: any;
+
 
   constructor(
     private modalCtrl: ModalController,
@@ -27,9 +25,6 @@ export class EventInfoComponent implements OnInit {
 
   async ngOnInit() {
     console.log(this.myList, this.index, this.key, this.indexInside);
-    const coordinates = await Geolocation.getCurrentPosition({enableHighAccuracy: true});
-    this.lat = coordinates.coords.latitude;
-    this.long = coordinates.coords.longitude; 
   }
 
   async dismissModal() {
@@ -39,11 +34,8 @@ export class EventInfoComponent implements OnInit {
   }
 
   navigate() {
-    const options: LaunchNavigatorOptions = {
-      start: [this.lat, this.long],
-      launchModeGoogleMaps: 'turn-by-turn',
-    }
-    this.launchNavigator.navigate(this.myList[this.index].address, options)
+
+    this.launchNavigator.navigate(this.myList[this.index][this.key][this.indexInside].address)
     .then(
     success => console.log('Launched navigator'),
     error => console.log('Error launching navigator', error)
