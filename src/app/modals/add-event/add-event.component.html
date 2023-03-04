@@ -11,7 +11,7 @@
 
   <ion-card>
     <img id="selectedImage" *ngIf="image" src="{{this.image}}"  (click)="uploadImage()">
-    <img *ngIf="!image" src="../../../assets/image-upload.png" (click)="uploadImage()">
+    <img *ngIf="!image" src="../../../assets/image-upload.png" class="preImage" (click)="uploadImage()">
     <ion-card-header>
       <ion-card-title>    
         <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>

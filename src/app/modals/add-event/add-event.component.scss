@@ -3,3 +3,9 @@ ion-item::part(native) {
   padding-left: unset;
   /** and lots more **/
 }
+
+.preImage {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
