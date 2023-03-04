@@ -4,6 +4,7 @@ import { EventService } from 'src/app/services/event.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
 
 declare var google;
@@ -26,6 +27,7 @@ export class AddEventComponent implements OnInit {
   lastname: string;
   userData: any;
   public myDate;
+  genre: any | undefined;
 
   map: any;
   address:string;
@@ -45,6 +47,7 @@ export class AddEventComponent implements OnInit {
 		private alertController: AlertController,
     private toastController: ToastController,
     public zone: NgZone,
+    private actionSheetCtrl: ActionSheetController
   ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
@@ -101,6 +104,63 @@ export class AddEventComponent implements OnInit {
     this.userId = this.userData.userId;
   }
 
+  
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Choose a genre',
+      buttons: [
+        {
+          text: 'Sports',
+          data: {
+            action: 'sports',
+          },
+        },
+        {
+          text: 'Education',
+          data: {
+            action: 'education',
+          },
+        },
+        {
+          text: 'Party',
+          data: {
+            action: 'party',
+          },
+        },
+        {
+          text: 'Recreational',
+          data: {
+            action: 'recreational',
+          },
+        },
+        {
+          text: 'Lifestyle',
+          data: {
+            action: 'lifestyle',
+          },
+        },
+        {
+          text: 'Food',
+          data: {
+            action: 'food',
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
+
+    const result = await actionSheet.onDidDismiss();
+    this.genre = result.data.action;
+    console.log(this.genre);
+  }
 
 
   async dismissModal() {
@@ -135,6 +195,7 @@ export class AddEventComponent implements OnInit {
           loading.dismiss();
           this.getBase64ImageFromUrl(this.image.webPath).then((data) => {
             this.image = data;
+            console.log(this.image);
           });
             
         } else {
@@ -174,7 +235,7 @@ export class AddEventComponent implements OnInit {
         await loading.present();
 
 
-        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate, this.address);
+        const result = await this.eventService.addEvent(this.title, this.description, this.userId, this.image, this.firstname, this.lastname, this.myDate, this.address, this.genre);
         loading.dismiss();
         
         if (!result) {

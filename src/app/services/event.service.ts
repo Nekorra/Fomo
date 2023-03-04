@@ -15,7 +15,7 @@ export class EventService {
   constructor(
     private af: AngularFirestore, private storage: AngularFireStorage) { }
 
-  async addEvent(title: string, des: string, userId: string, cameraFile: Photo, firstname: string, lastname: string, date: string, address: string) {
+  async addEvent(title: string, des: string, userId: string, cameraFile: string, firstname: string, lastname: string, date: string, address: string, genre: any) {
     
     try {
       console.log(cameraFile);
@@ -24,7 +24,7 @@ export class EventService {
       console.log(path);
       this.storageRef = this.storage.ref(path);
       console.log("storage", this.storageRef);
-			await this.storageRef.putString(cameraFile.base64String, 'base64');
+			await this.storageRef.putString(cameraFile, 'data_url');
 			const imageUrl = await this.storageRef.getDownloadURL().toPromise();
 			console.log("imageUrl", imageUrl);
       
@@ -35,7 +35,8 @@ export class EventService {
         firstname: firstname,
         lastname:  lastname,
         date: date,
-        address: address
+        address: address,
+        genre: genre
       })
       this.af.collection('users').doc(userId).update({
         events: arrayUnion(id)

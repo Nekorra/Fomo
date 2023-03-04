@@ -22,7 +22,7 @@
     </ion-card-header>
     
     <ion-card-content>
-    
+    <ion-button expand="block" (click)="presentActionSheet()">{{this.genre == undefined ? 'Chooose a genre' : this.genre}}</ion-button>
     <ion-list lines="full">
       <ion-item > 
         <ion-label> <div style="color:gray; float: left;"> Start</div> <div style="float: right;">{{myDate | date:'short'}}</div> </ion-label>

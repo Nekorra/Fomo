@@ -16,25 +16,28 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <h4 class="category">Featured</h4>
-
-  <ion-slides [options]="option">
-    <ion-slide *ngFor = "let items of myList; let indexOfelement = index;" class="featured-slide" (click)="openEventInfo(indexOfelement)">
-
-      <ion-img src="{{items.image}}"></ion-img>
-			<div class="info">
-				<ion-text color="dark" class="title"><b>{{items.title}}</b></ion-text>
-        <span class="location">When: {{items.date | date: "dd/MM/yyyy hh:mm a"}} </span>
-        <span>
-					<ion-text color="dark" class="author"> Host: {{items.firstname}} {{items.lastname}} </ion-text>
-				</span>
-
-      </div>
-      
-
-    </ion-slide>
+  <div *ngFor="let item of genres; let indOfelement = index;">
+    <h4 class="category">{{item}}</h4>
+      <ion-slides [options]="option" >
+        <ion-slide *ngFor = "let items of events[indOfelement][item]; let indexOfelement = index;" class="featured-slide" (click)="openEventInfo(indOfelement, item, indexOfelement)">
     
-  </ion-slides>
+          <ion-img src="{{items.image}}"></ion-img>
+          <div class="info">
+            <ion-text color="dark" class="title"><b>{{items.title}}</b></ion-text>
+            <span class="location">When: {{items.date | date: "dd/MM/yyyy hh:mm a"}} </span>
+            <span>
+              <ion-text color="dark" class="author"> Host: {{items.firstname}} {{items.lastname}} </ion-text>
+            </span>
+    
+          </div>
+          
+    
+        </ion-slide>
+        
+      </ion-slides>
+    
+  </div>
+  
   
 </ion-content>
 

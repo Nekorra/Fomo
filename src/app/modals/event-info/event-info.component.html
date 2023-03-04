@@ -10,15 +10,15 @@
 <ion-content class="ion-padding">
 
   <ion-card>
-    <img src="{{myList[index].image}}">
+    <img src="{{myList[index][key][indexInside].image}}">
     <ion-card-header>
-      <ion-card-subtitle>Post By: {{myList[index].firstname}} {{myList[index].lastname}}</ion-card-subtitle>
-      <ion-card-subtitle>When: {{myList[index].date | date: "dd/MM/yyyy hh:mm a"}}</ion-card-subtitle>
-      <ion-card-title>{{myList[index].title}}</ion-card-title>
+      <ion-card-subtitle>Post By: {{myList[index][key][indexInside].firstname}} {{myList[index][key][indexInside].lastname}}</ion-card-subtitle>
+      <ion-card-subtitle>When: {{myList[index][key][indexInside].date | date: "dd/MM/yyyy hh:mm a"}}</ion-card-subtitle>
+      <ion-card-title>{{myList[index][key][indexInside].title}}</ion-card-title>
     </ion-card-header>
     
     <ion-card-content>
-      {{myList[index].description}}
+      {{myList[index][key][indexInside].description}}
       <ion-button expand="full" (click)="navigate()">Open Address in Google Maps</ion-button>
     </ion-card-content>
   </ion-card>

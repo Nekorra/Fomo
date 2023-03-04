@@ -12,6 +12,8 @@ export class EventInfoComponent implements OnInit {
 
   myList = [];
   index: number;
+  indexInside: number;
+  key: any;
   lat: any;
   long: any;
 
@@ -24,7 +26,7 @@ export class EventInfoComponent implements OnInit {
 
 
   async ngOnInit() {
-    console.log(this.myList);
+    console.log(this.myList, this.index, this.key, this.indexInside);
     const coordinates = await Geolocation.getCurrentPosition({enableHighAccuracy: true});
     this.lat = coordinates.coords.latitude;
     this.long = coordinates.coords.longitude; 
