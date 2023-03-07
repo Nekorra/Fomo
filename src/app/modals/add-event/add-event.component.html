@@ -9,40 +9,95 @@
 
 <ion-content class="ion-padding">
 
-  <ion-card>
-    <img id="selectedImage" *ngIf="image" src="{{this.image}}"  (click)="uploadImage()">
-    <img *ngIf="!image" src="../../../assets/image-upload.png" class="preImage" (click)="uploadImage()">
-    <ion-card-header>
-      <ion-card-title>    
-        <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>
-      </ion-card-title>
-      <ion-card-subtitle>
-        <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
-      </ion-card-subtitle>
-    </ion-card-header>
-    
-    <ion-card-content>
-    <ion-button expand="block" (click)="presentActionSheet()">{{this.genre == undefined ? 'Chooose a genre' : this.genre}}</ion-button>
-    <ion-list lines="full">
-      <ion-item > 
-        <ion-label> <div style="color:gray; float: left;"> Start</div> <div style="float: right;">{{myDate | date:'short'}}</div> </ion-label>
-      </ion-item>
-    </ion-list>
-    
+  <ion-slides pager="true" #slides> 
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title> Start off by uploading an Image! </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <img id="selectedImage" *ngIf="image" src="{{this.image}}"  (click)="uploadImage()">
+          <img *ngIf="!image" src="../../../assets/image-upload.png" class="preImage" (click)="uploadImage()">
+          <ion-button expand="block" (click)="slides.slideNext()">Next!</ion-button>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-datetime display-format="DD/MM/YYYY" id="dat" [(ngModel)]="myDate" (ionChange)="showdate()"></ion-datetime>
+    </ion-slide>
 
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Give us a Title and Description!
+            <ion-input [(ngModel)]="title" placeholder="Title"> </ion-input>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <ion-textarea [(ngModel)]="description" placeholder="description"></ion-textarea>
 
-  <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="Search for a place"  (ionClear)="ClearAutocomplete()" [value]="address"></ion-searchbar>
-  <ion-list [hidden]="autocompleteItems.length == 0">
-    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
-      {{ item.description }}
-    </ion-item>
-  </ion-list>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button expand="block" (click)="slides.slideNext()">Next!</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
 
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-content>
+            <ion-card-title>
+              Choose a Genre!
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="presentActionSheet()">{{this.genre == undefined ? 'Chooose a genre' : this.genre}}</ion-button>
+          <ion-button expand="block" (click)="slides.slideNext()">Next!</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
 
-    </ion-card-content>
-  </ion-card>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-content>
+            <ion-card-title>
+              Choose a Date and Time!
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{myDate | date:'short'}}
+            </ion-card-subtitle>
+          </ion-card-content>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-datetime display-format="DD/MM/YYYY" id="dat" [(ngModel)]="myDate" (ionChange)="showdate()"></ion-datetime>
+          <ion-button expand="block" (click)="slides.slideNext()">Next!</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
 
-  <ion-button expand="block" (click)="addEvent()"> Post Event </ion-button>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-content>
+            <ion-card-title>
+             Finally choose a place and POST!
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="Search for a place"  (ionClear)="ClearAutocomplete()" [value]="address"></ion-searchbar>
+          <ion-list [hidden]="autocompleteItems.length == 0">
+            <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+              {{ item.description }}
+            </ion-item>
+          </ion-list>        
+          <ion-button expand="block" (click)="addEvent()"> Post Event </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
 </ion-content>
